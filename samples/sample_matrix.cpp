@@ -5,28 +5,51 @@
 // Тестирование матриц
 
 #include <iostream>
+#include <string>
 #include "tmatrix.h"
+using namespace std;
 //---------------------------------------------------------------------------
 
 int main()
 {
-  TDynamicMatrix<int> a(5), b(5), c(5);
-  int i, j;
+    int sizek;
+    string act;
+    cout << "enter a matrixes size: ";
+    cin >> sizek;
 
-  setlocale(LC_ALL, "Russian");
-  cout << "Тестирование класс работы с матрицами"
-    << endl;
-  for (i = 0; i < 5; i++)
-    for (j = i; j < 5; j++ )
-    {
-      a[i][j] =  i * 10 + j;
-      b[i][j] = (i * 10 + j) * 100;
+    TDynamicMatrix<int> a(sizek), b(sizek);
+    TDynamicMatrix<int> c(sizek);
+    int i, j;
+
+    setlocale(LC_ALL, "Russian");
+
+    cout << "enter a matrix A (" << sizek * sizek << " elemets): ";
+    cin >> a;
+
+    cout << "enter a matrix B (" << sizek * sizek << " elemets): ";
+    cin >> b;
+
+    cout << "enter the action  (+, -, *): ";
+    cin >> act;
+
+    if (act == "+") {
+        c = a + b;
     }
-  c = a + b;
-  cout << "Matrix a = " << endl << a << endl;
-  cout << "Matrix b = " << endl << b << endl;
-  cout << "Matrix c = a + b" << endl << c << endl;
+    else if (act == "-") {
+        c = a - b;
+    }
+    else if (act == "*") {
+        c = a * b;
+    }
+    else {
+        c = a + b;
+        cout << "Undefined action." << endl;
+    }
 
-  return 0;
+    cout << "Matrix a = " << endl << a << endl;
+    cout << "Matrix b = " << endl << b << endl;
+    cout << "Matrix c = " << endl << c << endl;
+
+    return 0;
 }
 //---------------------------------------------------------------------------
